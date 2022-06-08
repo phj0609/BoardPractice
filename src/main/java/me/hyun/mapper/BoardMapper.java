@@ -6,4 +6,9 @@ import me.hyun.model.Board;
 
 public interface BoardMapper {
 	List<Board> getList();
+	Board get(Long bno);
+	void insert(Board board);
+	void update(Board board);
+	void delete(Board board);
+	
 }
