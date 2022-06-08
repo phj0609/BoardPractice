@@ -9,6 +9,6 @@ public interface BoardMapper {
 	Board get(Long bno);
 	void insert(Board board);
 	void update(Board board);
-	void delete(Board board);
+	void delete(Long bno);
 	
 }

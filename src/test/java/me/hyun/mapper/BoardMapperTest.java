@@ -1,6 +1,7 @@
 package me.hyun.mapper;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -55,13 +56,33 @@ public class BoardMapperTest extends AppTest {
 		board.setContent("내용 테스트임");
 		board.setWriter("작성자");
 		boardMapper.insert(board);
-		boardMapper.insert(board);
 		Board getBoard = boardMapper.get(5L);
 		
 		assertEquals(board.getTitle(), getBoard.getTitle());
 		assertEquals(board.getContent(), getBoard.getContent());
 		assertEquals(board.getWriter(), getBoard.getWriter());
 		assertEquals(board.getBno(), getBoard.getBno());
+	}
+	
+	@Test
+	public void updateTest() {
+		Board board = boardMapper.get(1L);
+		board.setTitle("제목수정함");
+		board.setContent("내용수정함");
+		boardMapper.update(board);
+		assertEquals("제목수정함", board.getTitle());
+		assertEquals("내용수정함", board.getContent());
+		assertEquals("집으로", board.getWriter());
+	}
+	
+	@Test
+	public void deleteTest() {
+		boardMapper.delete(1L);
+		boardMapper.delete(2L);
+		Board board1 = boardMapper.get(1L);
+		Board board2 = boardMapper.get(2L);
+		assertNull(board1);
+		assertNull(board2);
 	}
 	
 }
