@@ -6,9 +6,8 @@
 	<form id="getForm">
 		<input type="hidden" name="bno" value="${board.bno}">
 		<input type="hidden" name="title" value="${board.title}">
+		<input type="hidden" name="content" value="${board.content}">
 		<input type="hidden" name="writer" value="${board.writer}">
-		<input type="hidden" name="regDate" value="${board.regDate}">
-		<input type="hidden" name="updateDate" value="${board.updateDate}">
 		<div>
 			<h3>${board.title}</h3>
 			<p>작성자 : ${board.writer}</p>
@@ -22,9 +21,24 @@
 		 	</p>
 			<p>${board.content}</p>
 		</div>
-		<button class="btn btn-warning">수정</button>
+		<button class="btn btn-warning modify">수정</button>
 		<button class="btn btn-danger">삭제</button>
-		<button class="btn btn-primary">목록</button>
+		<button class="btn btn-primary list">목록</button>
 	</form>
 </div>
+<script>
+$(function(){
+	let getForm = $("#getForm");
+	$('#getForm .list').on('click',function(){
+		getEmpty();
+		getForm.attr("action","list");
+		getForm.submit();
+	})
+	$('#getForm .modify').on('click',function(){
+		getForm.attr("action","modify");
+		getForm.submit();
+	})
+})
+
+</script>
 <%@ include file="../layout/footer.jspf" %>
