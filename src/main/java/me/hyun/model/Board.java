@@ -1,6 +1,7 @@
 package me.hyun.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +19,6 @@ public class Board {
 	private String title; 
 	private String content;
 	private String writer; 
-	private LocalDate regDate;
-	private LocalDate updateDate;
+	private LocalDateTime regDate;
+	private LocalDateTime updateDate;
 }

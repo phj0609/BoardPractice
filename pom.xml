@@ -77,9 +77,12 @@
 	    <artifactId>logback-classic</artifactId>
 	    <version>1.2.11</version>
 	</dependency>
-
-
-
+	<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	</dependency>
 
   </dependencies>
   
