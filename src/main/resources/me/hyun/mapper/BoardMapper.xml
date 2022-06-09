@@ -5,7 +5,7 @@
 <mapper namespace="me.hyun.mapper.BoardMapper">
 
   <select id="getList" resultType="me.hyun.model.Board">
-    select * from board_tbl
+    select * from board_tbl limit #{pageStart},#{perPageNum}
   </select>
   <!-- Board get(Long bno);
 	void insert(Board board);

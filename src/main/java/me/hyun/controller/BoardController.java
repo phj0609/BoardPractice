@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import me.hyun.model.Board;
+import me.hyun.model.Criteria;
 import me.hyun.service.BoardService;
 
 @Controller
@@ -19,8 +20,8 @@ public class BoardController {
 	BoardService service;
 	
 	@GetMapping("/list")
-	public String boardList(Model model) {
-		model.addAttribute("list", service.getList());
+	public String boardList(Model model, Criteria criteria) {
+		model.addAttribute("list", service.getList(criteria));
 		return "board/list";
 	}
 	
