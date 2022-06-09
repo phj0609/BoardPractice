@@ -3,6 +3,7 @@
 <%@ include file="../layout/header.jspf" %>
 <div class="container">
 	<h2>자유게시판</h2>
+	<a href="register">글쓰기</a>
 	<table class="table">
 		<tr>
 			<th>번호</th>
