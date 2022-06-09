@@ -15,6 +15,10 @@
 		select * from board_tbl where bno = #{bno}
 	</select>
 
+	<select id="totalCount" resultType="int">
+		select count(*) from board_tbl
+	</select>
+
 	<insert id="insert">
 		insert into board_tbl(title, content, Writer) value (#{title},#{content},#{writer});
 		<selectKey keyProperty="bno" order="AFTER" resultType="long"> 
