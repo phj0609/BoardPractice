@@ -10,6 +10,9 @@ import lombok.ToString;
 public class Criteria {
 	int page;
 	int perPageNum;
+	
+	String type; 
+	String keyword;
 
 	public Criteria() {
 		this.page = 1;
@@ -18,5 +21,11 @@ public class Criteria {
 
 	public int getPageStart() {
 		return (this.page - 1) * perPageNum;
+	}
+	
+	// 제목 T 내용 C 작성자 W
+	public String[] getTypeCollection() { // #{typeCollection}
+//		type.split(""); {T,C} {C,W}
+		return type != null ? type.split("") : new String[] {}; 
 	}
 }
