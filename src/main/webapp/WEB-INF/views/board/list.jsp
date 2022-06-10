@@ -2,6 +2,23 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jspf" %>
 <div class="container">
+	<div class="listData">
+		<input type="hidden" name="page" id="page" value="${pageMaker.criteria.page}">
+		<input type="hidden" name="type" id="type" value="${pageMaker.criteria.type}">
+		<input type="hidden" name="keyword" id="keyword" value="${pageMaker.criteria.keyword}">
+	</div>
+
+	<form action="${contextPath}/board/list" id="listForm">
+		<select name="type">
+			<option value="">===</option>
+			<option value="T" ${pageMaker.criteria.type eq 'T' ? 'selected' : ''}>제목</option>
+			<option value="C" ${pageMaker.criteria.type eq 'C' ? 'selected' : ''}>내용</option>
+			<option value="W" ${pageMaker.criteria.type eq 'W' ? 'selected' : ''}>작성자</option>
+		</select>
+		<input type="text" name="keyword" value="${pageMaker.criteria.keyword}">
+		<button>검색</button>
+	</form>
+	
 	<h2>자유게시판</h2>
 	<a href="register">글쓰기</a>
 	<table class="table">
@@ -30,14 +47,29 @@
 		</tr>
 		</c:forEach>
 	</table>
-	<c:if test="${pageMaker.prev}">
-		<a href="?page=${pageMaker.startPage - 1} ">[이전페이지]</a>
-	</c:if>
-	<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
-		<a href="?page=${pageNum}">[${pageNum}]</a>
-	</c:forEach>
-	<c:if test="${pageMaker.next}">
-		<a href="?page=${pageMaker.endPage + 1}">[다음페이지]</a>
-	</c:if>
+	<div class="pagination">
+		<c:if test="${pageMaker.prev}">
+			<a href="${pageMaker.startPage - 1} ">[이전페이지]</a>
+		</c:if>
+		<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
+			<a href="${pageNum}">[${pageNum}]</a>
+		</c:forEach>
+		<c:if test="${pageMaker.next}">
+			<a href="${pageMaker.endPage + 1}">[다음페이지]</a>
+		</c:if>
+	</div>
 </div>
 <%@ include file="../layout/footer.jspf" %>
+
+<script>
+$(function() {
+	let listForm = $('#listForm');
+	$('.pagination a').on('click', function(e){
+		e.preventDefault();
+		$('.listData').find('#page').val($(this).attr('href'));
+		listForm.append($('#page')); // 태그 추가, 페이지 이동가능
+		listForm.submit();
+	})
+	
+})
+</script>

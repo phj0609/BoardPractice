@@ -3,10 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="me.hyun.mapper.BoardMapper">
-
-  <select id="getList" resultType="me.hyun.model.Board">
-    select * from board_tbl 
-    <where>
+	
+	<sql id="search">
+		<where>
     	<trim prefixOverrides="OR">
     		<foreach collection="typeCollection">
     			<trim prefix="OR">
@@ -25,6 +24,11 @@
     		</foreach>
     	</trim>
     </where>
+	</sql>
+
+  <select id="getList" resultType="me.hyun.model.Board">
+    select * from board_tbl 
+    <include refid="search"/>
     order by bno desc
     limit #{pageStart},#{perPageNum}
   </select>
@@ -37,7 +41,8 @@
 	</select>
 
 	<select id="totalCount" resultType="int">
-		select count(*) from board_tbl
+		select count(*) from board_tbl 
+		<include refid="search"/>
 	</select>
 
 	<insert id="insert">
