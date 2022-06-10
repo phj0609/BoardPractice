@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 <title>게시판연습</title>
 <%@ include file="layout/header.jspf" %>
-<div class="container">
-	<h2>Home</h2>
+<div class="jumbotron">
+	<div class="container">
+		<h2>Home</h2>
+	</div>
 </div>
 <%@ include file="layout/footer.jspf" %>

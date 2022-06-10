@@ -23,10 +23,10 @@
       <a class="nav-link" href="${contextPath}/board/list">게시판</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Link 2</a>
+      <a class="nav-link" href="#">#</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Link 3</a>
+      <a class="nav-link" href="#">#</a>
     </li>
   </ul>
 </nav>	
