@@ -3,6 +3,7 @@
 <%@ include file="../layout/header.jspf" %>
 <div class="container">
 	<div class="listData">
+		<input type="hidden" name="bno" id="bno" value="">
 		<input type="hidden" name="page" id="page" value="${pageMaker.criteria.page}">
 		<input type="hidden" name="type" id="type" value="${pageMaker.criteria.type}">
 		<input type="hidden" name="keyword" id="keyword" value="${pageMaker.criteria.keyword}">
@@ -33,7 +34,7 @@
 		<tr>
 			<td>${b.bno}</td>
 			<td>
-			<a href="${contextPath}/board/get?bno=${b.bno}">${b.title}</a>
+			<a href="${b.bno}" class="get">${b.title}</a>
 			</td>
 			<td>${b.writer}</td>
 			<td>
@@ -52,7 +53,7 @@
 			<a href="${pageMaker.startPage - 1} ">[이전페이지]</a>
 		</c:if>
 		<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="pageNum">
-			<a href="${pageNum}">[${pageNum}]</a>
+			<a href="${pageNum}" class="${pageMaker.criteria.page == pageNum ? 'on' : ''}">[${pageNum}]</a>
 		</c:forEach>
 		<c:if test="${pageMaker.next}">
 			<a href="${pageMaker.endPage + 1}">[다음페이지]</a>
@@ -67,9 +68,28 @@ $(function() {
 	$('.pagination a').on('click', function(e){
 		e.preventDefault();
 		$('.listData').find('#page').val($(this).attr('href'));
-		listForm.append($('#page')); // 태그 추가, 페이지 이동가능
+		
+		if(listForm.find('input[name="keyword"]').val() == '') {
+			listForm.find('input[name="keyword"]').remove();
+			listForm.find('input[name="type"]').remove();
+		}
+		
+		listForm.append($('#page')); // 태그 추가, 페이지 이동가능 
+		listForm.submit();
+	});
+	
+	$('.get').on('click',function(e){
+		e.preventDefault();
+		let bno = $(this).attr('href');
+		$('#bno').val(bno);
+		listForm.append($('#bno'));
+		listForm.append($('#page'));
+		listForm.attr("action","get");
 		listForm.submit();
 	})
 	
 })
 </script>
+<style>
+.on {font-weight : 700; color : red;}
+</style>

@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jspf" %>
 <div class="container">
-	${board}
 	<form id="getForm">
 		<input type="hidden" name="bno" value="${board.bno}">
 		<div>
@@ -27,7 +26,7 @@
 $(function(){
 	let getForm = $("#getForm");
 	$('#getForm .list').on('click',function(){ // 목록
-		getEmpty();
+		//getEmpty();
 		getForm.attr("action","list");
 		getForm.submit();
 	})
